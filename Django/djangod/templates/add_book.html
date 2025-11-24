@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить книгу - Моя библиотека{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">📚 Добавить книгу</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label class="form-label">Название книги</label>
+            {{ form.title }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Автор</label>
+            {{ form.author }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Год издания</label>
+            {{ form.year }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Жанр</label>
+            {{ form.genre }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Аннотация</label>
+            {{ form.annotation }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Рецензия</label>
+            {{ form.review }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Статус</label>
+            {{ form.status }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Обложка</label>
+            {{ form.cover_image }}
+        </div>
+
+        <button type="submit" class="form-submit">Добавить книгу</button>
+    </form>
+
+    <div class="form-links">
+        <a href="{% url 'home' %}">← Вернуться на главную</a>
+    </div>
+</div>
+{% endblock %}

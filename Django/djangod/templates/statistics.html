@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Статистика - Моя библиотека{% endblock %}
+
+{% block content %}
+<h1>Статистика библиотеки</h1>
+
+<div class="stat-card">
+    <h2>📊 Общая статистика</h2>
+    <p style="font-size: 1.5rem; margin: 1rem 0;">
+        В моей библиотеке <strong style="color: #7bc47f; font-size: 2rem;">{{ total_books }} книг</strong>
+    </p>
+</div>
+
+<div class="stat-card">
+    <h3>📈 Статусы книг</h3>
+    <p>• Прочитано: {{ read_books }} книг</p>
+    <p>• В процессе чтения: {{ reading_books }} книг</p>
+    <p>• Буду читать: {{ planned_books }} книг</p>
+    <p>• Отложено: {{ postponed_books }} книг</p>
+</div>
+{% endblock %}

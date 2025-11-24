@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить пользователя - Моя библиотека{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">👤 Добавить пользователя</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label class="form-label">Имя</label>
+            {{ form.name }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Email</label>
+            {{ form.email }}
+        </div>
+
+        <button type="submit" class="form-submit">Добавить пользователя</button>
+    </form>
+
+    <div class="form-links">
+        <a href="{% url 'home' %}">← Вернуться на главную</a>
+    </div>
+</div>
+{% endblock %}

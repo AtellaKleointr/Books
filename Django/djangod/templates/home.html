@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная - Моя библиотека{% endblock %}
+
+{% block content %}
+<h1>📖 Мои книги</h1>
+<p>Добро пожаловать в вашу личную библиотеку! Здесь собраны все ваши любимые книги.</p>
+
+<div class="book-grid">
+    {% for book in books %}
+    <div class="book-item" onclick="location.href='{% url 'book_detail' book.pk %}'">
+        {% if book.cover_image %}
+            <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="book-cover-img">
+        {% else %}
+            <div class="book-cover-placeholder">
+                📚
+            </div>
+        {% endif %}
+
+        <div class="book-info">
+            <div class="book-title">{{ book.title }}</div>
+            <div class="book-author">{{ book.author }}</div>
+            <span class="status-badge status-{{ book.status }}">
+                {{ book.get_status_display }}
+            </span>
+        </div>
+    </div>
+    {% empty %}
+    <div style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
+        <p style="font-size: 1.2rem; color: #5a9c5e; margin-bottom: 1rem;">
+            В библиотеке пока нет книг.
+        </p>
+        <a href="{% url 'add_book' %}" class="btn">📚 Добавить первую книгу!</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ book.title }} - Моя библиотека{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="btn">← Назад к списку</a>
+
+<div style="display: flex; gap: 3rem; margin-top: 2rem;">
+    <div style="flex-shrink: 0;">
+        {% if book.cover_image %}
+            <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="book-detail-img">
+        {% else %}
+            <div style="width: 200px; height: 300px; background: linear-gradient(135deg, #a8e6a3, #7bc47f); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+                📚
+            </div>
+        {% endif %}
+    </div>
+
+    <div style="flex: 1;">
+        <h1>{{ book.title }}</h1>
+        <h3>{{ book.author }}</h3>
+
+        <span class="status-badge status-{{ book.status }}">
+            {{ book.get_status_display }}
+        </span>
+
+        <p><strong>Год издания:</strong> {{ book.year }}</p>
+        <p><strong>Жанр:</strong> {{ book.genre }}</p>
+        <p><strong>Аннотация:</strong> {{ book.annotation }}</p>
+
+        {% if book.review %}
+        <p><strong>Моя рецензия:</strong> {{ book.review }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
